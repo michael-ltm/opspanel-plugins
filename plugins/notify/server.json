@@ -3,7 +3,7 @@
   "name": "io.github.michael-ltm/notify",
   "title": "通知渠道",
   "description": "把消息推送到 ntfy、Telegram 或飞书机器人，让 Agent 和面板例程能通知到你。至少配置一个渠道。",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "url": "https://github.com/michael-ltm/opspanel-plugins",
     "source": "github",
@@ -13,7 +13,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-linux-amd64",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.2/notify-linux-amd64",
       "transport": {
         "type": "stdio"
       },
@@ -52,36 +52,36 @@
           "isSecret": true
         }
       ],
-      "version": "0.1.1",
-      "fileSha256": "3e64e14c699db3c329f57e2a6509977fbd4c35852026fe0da9bd3469001309bd"
+      "version": "0.1.2",
+      "fileSha256": "ac911587a439e34697d4856d6ab56bf4ac5cb076f47049f2d4d9c211b5e0618c"
     }
   ],
   "_meta": {
     "io.github.opspanel/plugin": {
       "artifacts": {
         "darwin/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-darwin-amd64",
-          "sha256": "16c1430d88dc96108203f64d59aa114c9d08c485872cb4da16aa33921e900e66"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.2/notify-darwin-amd64",
+          "sha256": "832aee701fe952c6dc68e0a6d768ece41b37a5cb0f6f98b534e79892c0dd30aa"
         },
         "darwin/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-darwin-arm64",
-          "sha256": "b43472b13cd8842be934de3c9cc58746ceb7da7b3a0c89d45b2ef2c44f18cbfd"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.2/notify-darwin-arm64",
+          "sha256": "0236ce650e280c51c194afe974fcc564689ca4741183ea2ac45f9bfc922b488d"
         },
         "linux/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-linux-amd64",
-          "sha256": "3e64e14c699db3c329f57e2a6509977fbd4c35852026fe0da9bd3469001309bd"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.2/notify-linux-amd64",
+          "sha256": "ac911587a439e34697d4856d6ab56bf4ac5cb076f47049f2d4d9c211b5e0618c"
         },
         "linux/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-linux-arm64",
-          "sha256": "4122271d3b8518e863a0b474ab4b38ab9d457f45dc91c49bd52ca45511fd314e"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.2/notify-linux-arm64",
+          "sha256": "9e00ce06ded97eb6746d64e36fad4d8467f0d8db5e15df394553fcd932689d85"
         },
         "windows/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-windows-amd64.exe",
-          "sha256": "7b086b13f4886459f60d9a1a94d8227b93173fb54cfc0f834af8f634ca59b93a"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.2/notify-windows-amd64.exe",
+          "sha256": "05e3a1a1ebe69735d33ee4f14d01bde5a37ede65a06955e0cd59ab2a960e5b2a"
         },
         "windows/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-windows-arm64.exe",
-          "sha256": "21fe7e3f4a9251aacc6a1247b80cab5773a24c7feefeb25a5d0e705368f1cccb"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.2/notify-windows-arm64.exe",
+          "sha256": "6c3f45ea2f17aba619e357d037a08b860f34c7cf3983f0ce9ca1db7289076f20"
         }
       },
       "i18n": {
@@ -97,7 +97,28 @@
           "tool.channels.title": "Channels",
           "tool.channels.description": "Which notification channels are set up",
           "tool.send.title": "Send message",
-          "tool.send.description": "Push a message to your channels"
+          "tool.send.description": "Push a message to your channels",
+          "env.NTFY_URL.title": "Server URL",
+          "env.NTFY_URL.group": "ntfy",
+          "env.NTFY_URL.description": "The ntfy server to use.",
+          "env.NTFY_TOPIC.title": "Topic",
+          "env.NTFY_TOPIC.group": "ntfy",
+          "env.NTFY_TOPIC.description": "Setting a topic turns ntfy on.",
+          "env.NTFY_TOKEN.title": "Access token",
+          "env.NTFY_TOKEN.group": "ntfy",
+          "env.NTFY_TOKEN.description": "Only needed for protected topics.",
+          "env.TELEGRAM_BOT_TOKEN.title": "Bot token",
+          "env.TELEGRAM_BOT_TOKEN.group": "Telegram",
+          "env.TELEGRAM_BOT_TOKEN.description": "Create a bot with @BotFather to get one.",
+          "env.TELEGRAM_CHAT_ID.title": "Chat ID",
+          "env.TELEGRAM_CHAT_ID.group": "Telegram",
+          "env.TELEGRAM_CHAT_ID.description": "The Telegram chat that receives messages.",
+          "env.FEISHU_WEBHOOK.title": "Webhook URL",
+          "env.FEISHU_WEBHOOK.group": "Feishu (Lark)",
+          "env.FEISHU_WEBHOOK.description": "The webhook of a Feishu group bot.",
+          "env.FEISHU_SECRET.title": "Signing secret",
+          "env.FEISHU_SECRET.group": "Feishu (Lark)",
+          "env.FEISHU_SECRET.description": "Fill in when the bot has signature verification on."
         }
       },
       "ui": [
@@ -161,6 +182,36 @@
         "send": {
           "title": "发送消息",
           "description": "推送一条消息到通知渠道"
+        }
+      },
+      "settings": {
+        "NTFY_URL": {
+          "title": "服务器地址",
+          "group": "ntfy"
+        },
+        "NTFY_TOPIC": {
+          "title": "主题",
+          "group": "ntfy"
+        },
+        "NTFY_TOKEN": {
+          "title": "访问令牌",
+          "group": "ntfy"
+        },
+        "TELEGRAM_BOT_TOKEN": {
+          "title": "机器人令牌",
+          "group": "Telegram"
+        },
+        "TELEGRAM_CHAT_ID": {
+          "title": "会话 ID",
+          "group": "Telegram"
+        },
+        "FEISHU_WEBHOOK": {
+          "title": "Webhook 地址",
+          "group": "飞书"
+        },
+        "FEISHU_SECRET": {
+          "title": "签名密钥",
+          "group": "飞书"
         }
       }
     }

@@ -40,6 +40,7 @@ tool or with `go run ./tools/catalog verify`.
 | `ui` | Status cards bound to read-only tools: `stat`, `table`, `list`, `image`, `json`, with a JSON Pointer `path`. Table columns may set `format`: `session` (an OpsPanel terminal session id) or `time` (unix ms). |
 | `ui[].rowActions` / `ui[].actions` | Buttons on a table row / in a card header. Each does one of `tool` (with `arguments`; `{key}` fills in a field of the row), `copy` or `link`. `when` / `unless` (`{key, in}`) show it only for some rows; `display: "dialog"` shows the result (`resultPath` picks a part); `confirm` asks first. A card's `tone: "alert"` turns a stat red while it is not zero. Column `format` also takes `badge`, `bool`, `ms` and `days`. |
 | `tools` | `{"<tool>": {"title", "description"}}` — Chinese wording for the panel's tool list; other languages use `i18n` keys `tool.<name>.title` / `tool.<name>.description`. |
+| `settings` | `{"<ENV_NAME>": {"title", "description", "group"}}` — a readable title, wording and section for each setting; other languages use `i18n` keys `env.<NAME>.title` / `.description` / `.group`. Settings with the same `group` fold together in the panel. |
 
 ## Publishing (maintainers)
 
