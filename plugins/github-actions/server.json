@@ -1,0 +1,116 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michael-ltm/github-actions",
+  "title": "GitHub Actions",
+  "description": "在面板里看 GitHub Actions：最近的运行、失败任务出错位置的日志、Release 列表，也能重跑失败的任务。需要一个 GitHub 令牌。",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/michael-ltm/opspanel-plugins",
+    "source": "github",
+    "subfolder": "cmd/github-actions"
+  },
+  "websiteUrl": "https://github.com/michael-ltm/opspanel-plugins/tree/main/cmd/github-actions",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-linux-amd64",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "GITHUB_TOKEN",
+          "description": "GitHub 令牌。细粒度令牌给 Actions 读权限即可查看，重跑还要 Actions 写权限，看 Release 要 Contents 读权限。",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "GITHUB_REPO",
+          "description": "要看的仓库（owner/name），多个用逗号分隔。不填就看你最近推送过的 5 个仓库。"
+        }
+      ],
+      "version": "0.1.0",
+      "fileSha256": "8b1c3d47b534c3257c5ea5344af6d7fb88403ee3773282c00c7fc9c326bef06d"
+    }
+  ],
+  "_meta": {
+    "io.github.opspanel/plugin": {
+      "artifacts": {
+        "darwin/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-darwin-amd64",
+          "sha256": "5ffac7445b53d48f1d4450d84e27d6420ccb0c116cfa484e40603cbdd77c1af6"
+        },
+        "darwin/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-darwin-arm64",
+          "sha256": "660581774fe6e6832e7ed7da9f2886046f160b435e974609c0669472cb96edd3"
+        },
+        "linux/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-linux-amd64",
+          "sha256": "8b1c3d47b534c3257c5ea5344af6d7fb88403ee3773282c00c7fc9c326bef06d"
+        },
+        "linux/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-linux-arm64",
+          "sha256": "0ed033eef220253f56b621f83bd5d823b5ebaa46e1be257fff478f07187789e1"
+        },
+        "windows/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-windows-amd64.exe",
+          "sha256": "29190d4803c3e072123f961848cfc7b2ed15b374096b8ed2a6357ae6286bb719"
+        },
+        "windows/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-windows-arm64.exe",
+          "sha256": "7f253b5913c13405aa443cb2c6ba3ff35645df831dae62ed411cc31a896b94f2"
+        }
+      },
+      "i18n": {
+        "en": {
+          "description": "Watch GitHub Actions from the panel: recent runs, the log around where a failed job broke, and releases; re-run failed jobs. Needs a GitHub token.",
+          "runs": "Recent runs",
+          "colRepo": "Repository",
+          "colWorkflow": "Workflow",
+          "colBranch": "Branch",
+          "colState": "State",
+          "colStarted": "Started"
+        }
+      },
+      "ui": [
+        {
+          "id": "runs",
+          "type": "table",
+          "title": "最近的运行",
+          "titleKey": "runs",
+          "tool": "runs_list",
+          "path": "/runs",
+          "refresh": 60,
+          "columns": [
+            {
+              "key": "repo",
+              "title": "仓库",
+              "titleKey": "colRepo"
+            },
+            {
+              "key": "workflow",
+              "title": "工作流",
+              "titleKey": "colWorkflow"
+            },
+            {
+              "key": "branch",
+              "title": "分支",
+              "titleKey": "colBranch"
+            },
+            {
+              "key": "state",
+              "title": "状态",
+              "titleKey": "colState"
+            },
+            {
+              "key": "createdAt",
+              "title": "开始于",
+              "titleKey": "colStarted",
+              "format": "time"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

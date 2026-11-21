@@ -3,6 +3,7 @@
 //	go run ./tools/catalog keygen -key ~/.config/opspanel-plugins/minisign.key
 //	go run ./tools/catalog sign   -key ~/.config/opspanel-plugins/minisign.key
 //	go run ./tools/catalog verify
+//	go run ./tools/catalog artifacts -plugin tailscale -version 0.1.0 -dir dist/tailscale-v0.1.0 -base <release download URL>
 //
 // sign reads plugins/*/server.json, signs each file's exact bytes and writes
 // index.json; verify checks every entry of index.json against minisign.pub.
@@ -49,12 +50,16 @@ var (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Fprintln(os.Stderr, "usage: catalog keygen|sign|verify [flags]")
+		fmt.Fprintln(os.Stderr, "usage: catalog keygen|sign|verify|artifacts [flags]")
 		os.Exit(2)
 	}
 	fs := flag.NewFlagSet(os.Args[1], flag.ExitOnError)
 	key := fs.String("key", "", "private key file (keygen writes it, sign reads it)")
 	root := fs.String("root", ".", "catalog repository root")
+	plugin := fs.String("plugin", "", "artifacts: plugin directory name under plugins/")
+	version := fs.String("version", "", "artifacts: the version being released")
+	dist := fs.String("dir", "", "artifacts: directory holding <plugin>-<goos>-<goarch>[.exe]")
+	base := fs.String("base", "", "artifacts: download URL prefix of the release")
 	_ = fs.Parse(os.Args[2:])
 	var err error
 	switch os.Args[1] {
@@ -64,6 +69,12 @@ func main() {
 		err = sign(*key, *root)
 	case "verify":
 		err = verify(*root)
+	case "artifacts":
+		if *plugin == "" || *version == "" || *dist == "" || *base == "" {
+			err = errors.New("artifacts needs -plugin, -version, -dir and -base")
+		} else {
+			err = setArtifacts(*root, *plugin, *version, *dist, *base)
+		}
 	default:
 		err = fmt.Errorf("unknown command %q", os.Args[1])
 	}

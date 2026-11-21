@@ -1,0 +1,109 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michael-ltm/tailscale",
+  "title": "Tailscale",
+  "description": "查看本机 Tailscale 的状态和 tailnet 里的节点：是否在线、IP、系统、最后在线时间，以及是直连还是走中继。只读。",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/michael-ltm/opspanel-plugins",
+    "source": "github",
+    "subfolder": "cmd/tailscale"
+  },
+  "websiteUrl": "https://github.com/michael-ltm/opspanel-plugins/tree/main/cmd/tailscale",
+  "_meta": {
+    "io.github.opspanel/plugin": {
+      "artifacts": {
+        "darwin/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-darwin-amd64",
+          "sha256": "ca0499670c2fd135655ea04da67fb33d36aea9e3f982dce2b7db166630fd760a"
+        },
+        "darwin/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-darwin-arm64",
+          "sha256": "d02c59273f4dc2c9276619b0120523d4807787e74728f94f4a15f78afb85c6ec"
+        },
+        "linux/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-linux-amd64",
+          "sha256": "58f83e301bc2697514cbdcbade95ac8c3366486d7d1aaddbb1a6eb6a01e4b687"
+        },
+        "linux/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-linux-arm64",
+          "sha256": "c35c0d838222aac20a1fec90f91d1b418fe6d5901191686da7dcccdd388e196c"
+        },
+        "windows/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-windows-amd64.exe",
+          "sha256": "ed42294a6f108f18a55865e4cd88a87f118482ae36ca6566a9353706cf012f58"
+        },
+        "windows/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-windows-arm64.exe",
+          "sha256": "7c423081221381a945cbcabfacbf18c73251e6ce0b552e6b0f62a5ac91049fb9"
+        }
+      },
+      "i18n": {
+        "en": {
+          "description": "This machine's Tailscale state and the nodes in the tailnet: online or not, IP, OS, last seen, and whether the connection is direct or relayed. Read-only.",
+          "online": "Nodes online",
+          "peers": "Nodes",
+          "colName": "Name",
+          "colIP": "IP",
+          "colOS": "OS",
+          "colOnline": "Online",
+          "colLastSeen": "Last seen",
+          "colConnection": "Connection"
+        }
+      },
+      "ui": [
+        {
+          "id": "online",
+          "type": "stat",
+          "title": "在线节点",
+          "titleKey": "online",
+          "tool": "status",
+          "path": "/online",
+          "refresh": 30
+        },
+        {
+          "id": "peers",
+          "type": "table",
+          "title": "节点",
+          "titleKey": "peers",
+          "tool": "peers",
+          "path": "/peers",
+          "refresh": 30,
+          "columns": [
+            {
+              "key": "name",
+              "title": "名称",
+              "titleKey": "colName"
+            },
+            {
+              "key": "ip",
+              "title": "IP",
+              "titleKey": "colIP"
+            },
+            {
+              "key": "os",
+              "title": "系统",
+              "titleKey": "colOS"
+            },
+            {
+              "key": "online",
+              "title": "在线",
+              "titleKey": "colOnline"
+            },
+            {
+              "key": "lastSeen",
+              "title": "最后在线",
+              "titleKey": "colLastSeen",
+              "format": "time"
+            },
+            {
+              "key": "connection",
+              "title": "连接",
+              "titleKey": "colConnection"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

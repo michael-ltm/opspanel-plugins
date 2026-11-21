@@ -1,0 +1,103 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michael-ltm/containers",
+  "title": "容器",
+  "description": "查看和管理本机的 Docker / Podman 容器：列表、日志、启动、停止、重启和删除。自动找到已安装的引擎，不需要配置。",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/michael-ltm/opspanel-plugins",
+    "source": "github",
+    "subfolder": "cmd/containers"
+  },
+  "websiteUrl": "https://github.com/michael-ltm/opspanel-plugins/tree/main/cmd/containers",
+  "_meta": {
+    "io.github.opspanel/plugin": {
+      "artifacts": {
+        "darwin/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-darwin-amd64",
+          "sha256": "d7f0939453679f04932b53979a57995e8add5078a6784c41f1524abb1545e851"
+        },
+        "darwin/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-darwin-arm64",
+          "sha256": "3e67a58b2a62952706b53deb35b2a56b1a7678cfc9b87ef302ea2ed52a64d163"
+        },
+        "linux/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-linux-amd64",
+          "sha256": "b0d4ded04175b91a42380a78e46bbdaf87521325b2d65e3b56158ca99a1eb40e"
+        },
+        "linux/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-linux-arm64",
+          "sha256": "3e53458f03000229614371963ca31e2abe5f26af4358bf2a510df33132e41d62"
+        },
+        "windows/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-windows-amd64.exe",
+          "sha256": "442fc2b874dfedad88efc21c874d7440ef8284696d47abb6621fe7c05ddb54f4"
+        },
+        "windows/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-windows-arm64.exe",
+          "sha256": "6805f78908e2b884c50cca6d09c91eb2524c5e068850924233b5e9874373355a"
+        }
+      },
+      "i18n": {
+        "en": {
+          "title": "Containers",
+          "description": "See and manage this machine's Docker / Podman containers: list, logs, start, stop, restart and remove. Finds the installed engine on its own; nothing to configure.",
+          "running": "Running",
+          "containers": "Containers",
+          "colName": "Name",
+          "colImage": "Image",
+          "colState": "State",
+          "colStatus": "Status",
+          "colPorts": "Ports"
+        }
+      },
+      "ui": [
+        {
+          "id": "running",
+          "type": "stat",
+          "title": "运行中",
+          "titleKey": "running",
+          "tool": "containers_list",
+          "path": "/running",
+          "refresh": 15
+        },
+        {
+          "id": "containers",
+          "type": "table",
+          "title": "容器",
+          "titleKey": "containers",
+          "tool": "containers_list",
+          "path": "/containers",
+          "refresh": 15,
+          "columns": [
+            {
+              "key": "name",
+              "title": "名称",
+              "titleKey": "colName"
+            },
+            {
+              "key": "image",
+              "title": "镜像",
+              "titleKey": "colImage"
+            },
+            {
+              "key": "state",
+              "title": "状态",
+              "titleKey": "colState"
+            },
+            {
+              "key": "status",
+              "title": "详情",
+              "titleKey": "colStatus"
+            },
+            {
+              "key": "ports",
+              "title": "端口",
+              "titleKey": "colPorts"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

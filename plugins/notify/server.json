@@ -1,0 +1,132 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michael-ltm/notify",
+  "title": "通知渠道",
+  "description": "把消息推送到 ntfy、Telegram 或飞书机器人，让 Agent 和面板例程能通知到你。至少配置一个渠道。",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/michael-ltm/opspanel-plugins",
+    "source": "github",
+    "subfolder": "cmd/notify"
+  },
+  "websiteUrl": "https://github.com/michael-ltm/opspanel-plugins/tree/main/cmd/notify",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-linux-amd64",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "NTFY_URL",
+          "description": "ntfy 服务器地址。",
+          "default": "https://ntfy.sh"
+        },
+        {
+          "name": "NTFY_TOPIC",
+          "description": "ntfy 主题；填了就启用 ntfy。"
+        },
+        {
+          "name": "NTFY_TOKEN",
+          "description": "ntfy 访问令牌（受保护的主题才需要）。",
+          "isSecret": true
+        },
+        {
+          "name": "TELEGRAM_BOT_TOKEN",
+          "description": "Telegram 机器人令牌（找 @BotFather 创建）。",
+          "isSecret": true
+        },
+        {
+          "name": "TELEGRAM_CHAT_ID",
+          "description": "接收消息的 Telegram 会话 ID。"
+        },
+        {
+          "name": "FEISHU_WEBHOOK",
+          "description": "飞书群机器人的 Webhook 地址。",
+          "isSecret": true
+        },
+        {
+          "name": "FEISHU_SECRET",
+          "description": "飞书机器人开启了签名校验时，填写签名密钥。",
+          "isSecret": true
+        }
+      ],
+      "version": "0.1.0",
+      "fileSha256": "04574bf5c964162777b568ba31dc09abacbf8c975d0d62e79cc211b5975c0758"
+    }
+  ],
+  "_meta": {
+    "io.github.opspanel/plugin": {
+      "artifacts": {
+        "darwin/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-darwin-amd64",
+          "sha256": "b509871d9f0fd02e0702644e22578b8f17ae523c630350b046c40072113b30fb"
+        },
+        "darwin/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-darwin-arm64",
+          "sha256": "034beced9caa6f81aeaf25e2166e3c1f7aa2e1d73feb7647e7f90106d2acddb1"
+        },
+        "linux/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-linux-amd64",
+          "sha256": "04574bf5c964162777b568ba31dc09abacbf8c975d0d62e79cc211b5975c0758"
+        },
+        "linux/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-linux-arm64",
+          "sha256": "946c49c76f56d0533035741844a91ff978619e0ae41c0c6f00e6c2380ed977f4"
+        },
+        "windows/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-windows-amd64.exe",
+          "sha256": "bf6c059179707c003e6d65f9e1e03cfdf94b3414edd9d1488a47caa5f42d1955"
+        },
+        "windows/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-windows-arm64.exe",
+          "sha256": "7177be0594fab8976d738d9225058116fb7175757c9a6d5f9b51630ead19499e"
+        }
+      },
+      "i18n": {
+        "en": {
+          "title": "Notification channels",
+          "description": "Push messages to ntfy, Telegram or a Feishu (Lark) bot, so agents and panel routines can reach you. Configure at least one channel.",
+          "channels": "Channels",
+          "colChannel": "Channel",
+          "colConfigured": "Configured",
+          "colTarget": "Sends to",
+          "colMissing": "Still needed"
+        }
+      },
+      "ui": [
+        {
+          "id": "channels",
+          "type": "table",
+          "title": "渠道",
+          "titleKey": "channels",
+          "tool": "channels",
+          "path": "/channels",
+          "columns": [
+            {
+              "key": "id",
+              "title": "渠道",
+              "titleKey": "colChannel"
+            },
+            {
+              "key": "configured",
+              "title": "已配置",
+              "titleKey": "colConfigured"
+            },
+            {
+              "key": "target",
+              "title": "发送到",
+              "titleKey": "colTarget"
+            },
+            {
+              "key": "missing",
+              "title": "还需设置",
+              "titleKey": "colMissing"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

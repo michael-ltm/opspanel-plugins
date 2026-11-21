@@ -1,0 +1,139 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michael-ltm/restic",
+  "title": "restic 备份",
+  "description": "查看和管理 restic 备份：快照列表、仓库大小和完整性检查，也能备份指定路径、把快照恢复到指定目录。需要本机已安装 restic。",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/michael-ltm/opspanel-plugins",
+    "source": "github",
+    "subfolder": "cmd/restic"
+  },
+  "websiteUrl": "https://github.com/michael-ltm/opspanel-plugins/tree/main/cmd/restic",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-linux-amd64",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "RESTIC_REPOSITORY",
+          "description": "restic 仓库位置：本地路径，或 sftp:、s3:、b2:、rest: 等地址。",
+          "isRequired": true
+        },
+        {
+          "name": "RESTIC_PASSWORD",
+          "description": "仓库密码。",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "description": "S3 兼容存储的 Access Key（仓库地址以 s3: 开头时填写）。"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "description": "S3 兼容存储的 Secret Key。",
+          "isSecret": true
+        },
+        {
+          "name": "B2_ACCOUNT_ID",
+          "description": "Backblaze B2 的 keyID（仓库地址以 b2: 开头时填写）。"
+        },
+        {
+          "name": "B2_ACCOUNT_KEY",
+          "description": "Backblaze B2 的 applicationKey。",
+          "isSecret": true
+        }
+      ],
+      "version": "0.1.0",
+      "fileSha256": "c80224a4907bf952ee221eb5c09076979af953626f8227cd13420ec2cd6e37d4"
+    }
+  ],
+  "_meta": {
+    "io.github.opspanel/plugin": {
+      "artifacts": {
+        "darwin/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-darwin-amd64",
+          "sha256": "539b8994d27ec066215e2818129e2d96a6b1be29b4719e98a8546c4da3e2b029"
+        },
+        "darwin/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-darwin-arm64",
+          "sha256": "b29e22efb7c6174d51b9ff3016196b98b83ccf8cb01f0928e39e263067d06503"
+        },
+        "linux/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-linux-amd64",
+          "sha256": "c80224a4907bf952ee221eb5c09076979af953626f8227cd13420ec2cd6e37d4"
+        },
+        "linux/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-linux-arm64",
+          "sha256": "25f7a764dbc3b6fd096be76ab6dc5755e18fa85c46a19ad7bf9e3acd22729a75"
+        },
+        "windows/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-windows-amd64.exe",
+          "sha256": "c019c992ff7325ec6c213c61e96bb6211713157ce95be431b2e7cab517984447"
+        },
+        "windows/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-windows-arm64.exe",
+          "sha256": "1d5b3cfdd215140769732cd4b27b2935a583846f6fe4623865b8d402c563de56"
+        }
+      },
+      "i18n": {
+        "en": {
+          "title": "restic backups",
+          "description": "See and manage restic backups: snapshots, repository size and integrity checks; back up paths or restore a snapshot into a directory. Needs restic installed on this machine.",
+          "snapshots": "Snapshots",
+          "colTime": "Time",
+          "colHost": "Host",
+          "colPaths": "Paths",
+          "colTags": "Tags",
+          "colID": "ID"
+        }
+      },
+      "ui": [
+        {
+          "id": "snapshots",
+          "type": "table",
+          "title": "快照",
+          "titleKey": "snapshots",
+          "tool": "snapshots",
+          "arguments": {
+            "limit": 20
+          },
+          "path": "/snapshots",
+          "refresh": 300,
+          "columns": [
+            {
+              "key": "time",
+              "title": "时间",
+              "titleKey": "colTime",
+              "format": "time"
+            },
+            {
+              "key": "hostname",
+              "title": "主机",
+              "titleKey": "colHost"
+            },
+            {
+              "key": "paths",
+              "title": "路径",
+              "titleKey": "colPaths"
+            },
+            {
+              "key": "tags",
+              "title": "标签",
+              "titleKey": "colTags"
+            },
+            {
+              "key": "id",
+              "title": "ID",
+              "titleKey": "colID"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

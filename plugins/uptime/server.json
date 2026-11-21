@@ -1,0 +1,127 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michael-ltm/uptime",
+  "title": "可用性探测",
+  "description": "检查网址和端口是否可用：HTTP 状态码、响应时间和 TLS 证书剩余天数；host:port 只测 TCP 能否连通。插件按需检查，要定时检查请用面板的例程调用它。",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/michael-ltm/opspanel-plugins",
+    "source": "github",
+    "subfolder": "cmd/uptime"
+  },
+  "websiteUrl": "https://github.com/michael-ltm/opspanel-plugins/tree/main/cmd/uptime",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-linux-amd64",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "TARGETS",
+          "description": "要检查的目标，逗号分隔：网址（https://example.com/health）或 host:port（db.example.com:5432）。只写域名时按 https 检查。",
+          "isRequired": true
+        }
+      ],
+      "version": "0.1.0",
+      "fileSha256": "45c8a6838a05ad3840ac75af1ab8fedde4a67f8a11223c4edf8a515c242c1f6a"
+    }
+  ],
+  "_meta": {
+    "io.github.opspanel/plugin": {
+      "artifacts": {
+        "darwin/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-darwin-amd64",
+          "sha256": "9d597069c6816ffb7a001a68a8335cc13eeaee7c60de0af162ce39980701165a"
+        },
+        "darwin/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-darwin-arm64",
+          "sha256": "b8228fe653f9c1911bc9322f67f6403e6c8d8c2c1c64c721810c53c77223a68a"
+        },
+        "linux/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-linux-amd64",
+          "sha256": "45c8a6838a05ad3840ac75af1ab8fedde4a67f8a11223c4edf8a515c242c1f6a"
+        },
+        "linux/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-linux-arm64",
+          "sha256": "4099d74186e4ec647930d7ee3e65557b837350b2758bf53e73747f0af78b8ff3"
+        },
+        "windows/amd64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-windows-amd64.exe",
+          "sha256": "39cc06850ece216d012c5ce0778dd2453b0d3bca4e88ca0253a41e0ce8a6dae6"
+        },
+        "windows/arm64": {
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-windows-arm64.exe",
+          "sha256": "1e27e4977efea23731a94fd1543b273c72ef2b63fe43a6117c19183b59fffe6b"
+        }
+      },
+      "i18n": {
+        "en": {
+          "title": "Uptime & certificates",
+          "description": "Check that URLs and ports answer: HTTP status, response time and days left on the TLS certificate; host:port targets test a TCP connection. Checks run on demand; schedule them with a panel routine.",
+          "down": "Targets down",
+          "targets": "Targets",
+          "colTarget": "Target",
+          "colOK": "OK",
+          "colStatus": "HTTP status",
+          "colLatency": "Time (ms)",
+          "colCert": "Certificate days left",
+          "colError": "Error"
+        }
+      },
+      "ui": [
+        {
+          "id": "down",
+          "type": "stat",
+          "title": "异常目标",
+          "titleKey": "down",
+          "tool": "check",
+          "path": "/down",
+          "refresh": 60
+        },
+        {
+          "id": "targets",
+          "type": "table",
+          "title": "目标",
+          "titleKey": "targets",
+          "tool": "check",
+          "path": "/targets",
+          "refresh": 60,
+          "columns": [
+            {
+              "key": "target",
+              "title": "目标",
+              "titleKey": "colTarget"
+            },
+            {
+              "key": "ok",
+              "title": "正常",
+              "titleKey": "colOK"
+            },
+            {
+              "key": "status",
+              "title": "状态码",
+              "titleKey": "colStatus"
+            },
+            {
+              "key": "latencyMs",
+              "title": "耗时（ms）",
+              "titleKey": "colLatency"
+            },
+            {
+              "key": "certDaysLeft",
+              "title": "证书剩余天数",
+              "titleKey": "colCert"
+            },
+            {
+              "key": "error",
+              "title": "错误",
+              "titleKey": "colError"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

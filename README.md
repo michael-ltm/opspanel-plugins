@@ -9,6 +9,12 @@ read a valid `server.json`.
 | Plugin | What it does |
 | --- | --- |
 | [Browpilot](plugins/browpilot/server.json) | Lets AI agents drive the browser profiles you choose; the panel shows which profiles are online and which agent session holds which tab. |
+| [Containers](plugins/containers/server.json) | See and manage this machine's Docker / Podman containers: list, logs, start, stop, restart, remove. |
+| [GitHub Actions](plugins/github-actions/server.json) | Recent workflow runs, failed-job log tails, releases; re-run failed jobs. |
+| [Notify](plugins/notify/server.json) | Push messages to ntfy, Telegram or a Feishu (Lark) bot. |
+| [restic](plugins/restic/server.json) | Snapshots, repository stats and checks; back up and restore. |
+| [Tailscale](plugins/tailscale/server.json) | This machine's tailnet state and peers (read-only). |
+| [Uptime](plugins/uptime/server.json) | On-demand HTTP / TCP probes with TLS certificate days left. |
 
 ## How OpsPanel trusts this catalog
 
