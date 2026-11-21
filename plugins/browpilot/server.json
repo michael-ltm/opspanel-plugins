@@ -1,0 +1,142 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.michael-ltm/browpilot",
+  "title": "Browpilot",
+  "description": "让 AI Agent 操控你选定的浏览器 profile：标签页、点击、输入、截图和调试。面板里能看到哪些 profile 在线、哪个 Agent 会话正占用哪个标签页。需要在浏览器里安装 Browpilot 扩展。",
+  "version": "0.2.4",
+  "repository": {
+    "url": "https://github.com/michael-ltm/browpilot-src",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/michael-ltm/browpilot",
+  "_meta": {
+    "io.github.opspanel/plugin": {
+      "npm": {
+        "tarball": "https://github.com/michael-ltm/browpilot/releases/download/v0.2.4/browpilot-0.2.4.tgz",
+        "sha256": "3746b86f571cab669e3cedb2667beef1248595a6e765cef02a299dc847e27a42",
+        "bin": "browpilot"
+      },
+      "i18n": {
+        "en": {
+          "description": "Lets AI agents drive the browser profiles you choose: tabs, clicks, typing, screenshots and debugging. The panel shows which profiles are online and which agent session holds which tab. Requires the Browpilot browser extension.",
+          "connected": "Profiles online",
+          "profiles": "Browser profiles",
+          "leases": "Tabs in use",
+          "agents": "Connected agents",
+          "colName": "Name",
+          "colStatus": "Status",
+          "colTabs": "Tabs in use",
+          "colReconnects": "Reconnects",
+          "colProfile": "Profile",
+          "colTab": "Tab",
+          "colSession": "Terminal session",
+          "colSince": "Since",
+          "colConnected": "Connected"
+        }
+      },
+      "ui": [
+        {
+          "id": "connected",
+          "type": "stat",
+          "title": "在线 profile",
+          "titleKey": "connected",
+          "tool": "browser_overview",
+          "path": "/connected",
+          "refresh": 15
+        },
+        {
+          "id": "profiles",
+          "type": "table",
+          "title": "浏览器 profile",
+          "titleKey": "profiles",
+          "tool": "browser_overview",
+          "path": "/profiles",
+          "refresh": 15,
+          "columns": [
+            {
+              "key": "label",
+              "title": "名称",
+              "titleKey": "colName"
+            },
+            {
+              "key": "status",
+              "title": "状态",
+              "titleKey": "colStatus"
+            },
+            {
+              "key": "tabCount",
+              "title": "占用的标签页",
+              "titleKey": "colTabs"
+            },
+            {
+              "key": "reconnectCount",
+              "title": "重连次数",
+              "titleKey": "colReconnects"
+            }
+          ]
+        },
+        {
+          "id": "leases",
+          "type": "table",
+          "title": "正在使用的标签页",
+          "titleKey": "leases",
+          "tool": "browser_overview",
+          "path": "/leases",
+          "refresh": 15,
+          "columns": [
+            {
+              "key": "label",
+              "title": "Profile",
+              "titleKey": "colProfile"
+            },
+            {
+              "key": "tabId",
+              "title": "标签页",
+              "titleKey": "colTab"
+            },
+            {
+              "key": "opspanelSession",
+              "title": "终端会话",
+              "titleKey": "colSession",
+              "format": "session"
+            },
+            {
+              "key": "since",
+              "title": "开始于",
+              "titleKey": "colSince",
+              "format": "time"
+            }
+          ]
+        },
+        {
+          "id": "agents",
+          "type": "table",
+          "title": "已连接的 Agent",
+          "titleKey": "agents",
+          "tool": "browser_overview",
+          "path": "/agents",
+          "refresh": 15,
+          "columns": [
+            {
+              "key": "opspanelSession",
+              "title": "终端会话",
+              "titleKey": "colSession",
+              "format": "session"
+            },
+            {
+              "key": "tabs",
+              "title": "占用的标签页",
+              "titleKey": "colTabs"
+            },
+            {
+              "key": "connectedAt",
+              "title": "连接于",
+              "titleKey": "colConnected",
+              "format": "time"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
