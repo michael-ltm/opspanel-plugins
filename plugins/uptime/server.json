@@ -3,7 +3,7 @@
   "name": "io.github.michael-ltm/uptime",
   "title": "可用性探测",
   "description": "检查网址和端口是否可用：HTTP 状态码、响应时间和 TLS 证书剩余天数；host:port 只测 TCP 能否连通。插件按需检查，要定时检查请用面板的例程调用它。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/michael-ltm/opspanel-plugins",
     "source": "github",
@@ -13,7 +13,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-linux-amd64",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.1/uptime-linux-amd64",
       "transport": {
         "type": "stdio"
       },
@@ -24,36 +24,36 @@
           "isRequired": true
         }
       ],
-      "version": "0.1.0",
-      "fileSha256": "45c8a6838a05ad3840ac75af1ab8fedde4a67f8a11223c4edf8a515c242c1f6a"
+      "version": "0.1.1",
+      "fileSha256": "310a52691a2189c88e291a3a8bf9ce6d4524a6689a8819c7bf9a07d944e25b12"
     }
   ],
   "_meta": {
     "io.github.opspanel/plugin": {
       "artifacts": {
         "darwin/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-darwin-amd64",
-          "sha256": "9d597069c6816ffb7a001a68a8335cc13eeaee7c60de0af162ce39980701165a"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.1/uptime-darwin-amd64",
+          "sha256": "7ad096770c913da6cd503f817e068cb7b640ad068a7472393abbfebffdc62307"
         },
         "darwin/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-darwin-arm64",
-          "sha256": "b8228fe653f9c1911bc9322f67f6403e6c8d8c2c1c64c721810c53c77223a68a"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.1/uptime-darwin-arm64",
+          "sha256": "c1ef715eec2e02804ec38f2bc16cf529f7b06636d0b3d2a7c87d32d65beb85b2"
         },
         "linux/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-linux-amd64",
-          "sha256": "45c8a6838a05ad3840ac75af1ab8fedde4a67f8a11223c4edf8a515c242c1f6a"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.1/uptime-linux-amd64",
+          "sha256": "310a52691a2189c88e291a3a8bf9ce6d4524a6689a8819c7bf9a07d944e25b12"
         },
         "linux/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-linux-arm64",
-          "sha256": "4099d74186e4ec647930d7ee3e65557b837350b2758bf53e73747f0af78b8ff3"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.1/uptime-linux-arm64",
+          "sha256": "45df6d656effc4b23aae73957aec7057aae1a0fe1eaf8b74164646202b74e059"
         },
         "windows/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-windows-amd64.exe",
-          "sha256": "39cc06850ece216d012c5ce0778dd2453b0d3bca4e88ca0253a41e0ce8a6dae6"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.1/uptime-windows-amd64.exe",
+          "sha256": "2ef36cb72b453110f05f94111746b24de6ec0bd2b43124a50a9f23629e46cb02"
         },
         "windows/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.0/uptime-windows-arm64.exe",
-          "sha256": "1e27e4977efea23731a94fd1543b273c72ef2b63fe43a6117c19183b59fffe6b"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/uptime-v0.1.1/uptime-windows-arm64.exe",
+          "sha256": "7d1b999fdfc253353a6d4941b8ffbcd701549693d7a4638f69daab4222d6e4f0"
         }
       },
       "i18n": {
@@ -67,7 +67,10 @@
           "colStatus": "HTTP status",
           "colLatency": "Time (ms)",
           "colCert": "Certificate days left",
-          "colError": "Error"
+          "colError": "Error",
+          "actOpen": "Open",
+          "tool.check.title": "Check now",
+          "tool.check.description": "Probe every target, or ones you give"
         }
       },
       "ui": [
@@ -78,7 +81,8 @@
           "titleKey": "down",
           "tool": "check",
           "path": "/down",
-          "refresh": 60
+          "refresh": 60,
+          "tone": "alert"
         },
         {
           "id": "targets",
@@ -97,7 +101,8 @@
             {
               "key": "ok",
               "title": "正常",
-              "titleKey": "colOK"
+              "titleKey": "colOK",
+              "format": "bool"
             },
             {
               "key": "status",
@@ -107,21 +112,44 @@
             {
               "key": "latencyMs",
               "title": "耗时（ms）",
-              "titleKey": "colLatency"
+              "titleKey": "colLatency",
+              "format": "ms"
             },
             {
               "key": "certDaysLeft",
               "title": "证书剩余天数",
-              "titleKey": "colCert"
+              "titleKey": "colCert",
+              "format": "days"
             },
             {
               "key": "error",
               "title": "错误",
               "titleKey": "colError"
             }
+          ],
+          "rowActions": [
+            {
+              "id": "open",
+              "title": "打开",
+              "titleKey": "actOpen",
+              "icon": "external",
+              "link": "{target}",
+              "when": {
+                "key": "kind",
+                "in": [
+                  "http"
+                ]
+              }
+            }
           ]
         }
-      ]
+      ],
+      "tools": {
+        "check": {
+          "title": "立即检查",
+          "description": "探测所有目标，或临时指定几个"
+        }
+      }
     }
   }
 }

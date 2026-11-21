@@ -3,7 +3,7 @@
   "name": "io.github.michael-ltm/tailscale",
   "title": "Tailscale",
   "description": "查看本机 Tailscale 的状态和 tailnet 里的节点：是否在线、IP、系统、最后在线时间，以及是直连还是走中继。只读。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/michael-ltm/opspanel-plugins",
     "source": "github",
@@ -14,28 +14,28 @@
     "io.github.opspanel/plugin": {
       "artifacts": {
         "darwin/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-darwin-amd64",
-          "sha256": "ca0499670c2fd135655ea04da67fb33d36aea9e3f982dce2b7db166630fd760a"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.1/tailscale-darwin-amd64",
+          "sha256": "f3214cae5388ba35f01418708dc1f1391c529590d9ede27d3f2bdbe097fae136"
         },
         "darwin/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-darwin-arm64",
-          "sha256": "d02c59273f4dc2c9276619b0120523d4807787e74728f94f4a15f78afb85c6ec"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.1/tailscale-darwin-arm64",
+          "sha256": "8dbb7dcdd2096b30916d4c8c290e14623902c6e6ad0efbf4e8ec6ee4f1e328ca"
         },
         "linux/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-linux-amd64",
-          "sha256": "58f83e301bc2697514cbdcbade95ac8c3366486d7d1aaddbb1a6eb6a01e4b687"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.1/tailscale-linux-amd64",
+          "sha256": "d75eef31a63513bbe00bc8543fb8640eab512719cf8dc990b153f30e75914c87"
         },
         "linux/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-linux-arm64",
-          "sha256": "c35c0d838222aac20a1fec90f91d1b418fe6d5901191686da7dcccdd388e196c"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.1/tailscale-linux-arm64",
+          "sha256": "94c1b4d6dc4ce7b4e67663ef344910820e902087b5b3c70745d765f1796758ee"
         },
         "windows/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-windows-amd64.exe",
-          "sha256": "ed42294a6f108f18a55865e4cd88a87f118482ae36ca6566a9353706cf012f58"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.1/tailscale-windows-amd64.exe",
+          "sha256": "65bb3cc169a6600903f5bbb928ef50eba4555b6c02b47b9a0e1b83d062210d76"
         },
         "windows/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.0/tailscale-windows-arm64.exe",
-          "sha256": "7c423081221381a945cbcabfacbf18c73251e6ce0b552e6b0f62a5ac91049fb9"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/tailscale-v0.1.1/tailscale-windows-arm64.exe",
+          "sha256": "d45753abe070a2fae1727e2c9fe388a3cdaf5948435725e49e2846c279333178"
         }
       },
       "i18n": {
@@ -48,7 +48,12 @@
           "colOS": "OS",
           "colOnline": "Online",
           "colLastSeen": "Last seen",
-          "colConnection": "Connection"
+          "colConnection": "Connection",
+          "actCopyIp": "Copy IP",
+          "tool.status.title": "This machine",
+          "tool.status.description": "This machine's Tailscale state and the tailnet overview",
+          "tool.peers.title": "Peers",
+          "tool.peers.description": "Every node in the tailnet"
         }
       },
       "ui": [
@@ -88,7 +93,8 @@
             {
               "key": "online",
               "title": "在线",
-              "titleKey": "colOnline"
+              "titleKey": "colOnline",
+              "format": "bool"
             },
             {
               "key": "lastSeen",
@@ -99,11 +105,37 @@
             {
               "key": "connection",
               "title": "连接",
-              "titleKey": "colConnection"
+              "titleKey": "colConnection",
+              "format": "badge"
+            }
+          ],
+          "rowActions": [
+            {
+              "id": "copy",
+              "title": "复制 IP",
+              "titleKey": "actCopyIp",
+              "icon": "copy",
+              "copy": "{ip}",
+              "unless": {
+                "key": "ip",
+                "in": [
+                  ""
+                ]
+              }
             }
           ]
         }
-      ]
+      ],
+      "tools": {
+        "status": {
+          "title": "本机状态",
+          "description": "本机的 Tailscale 状态和 tailnet 概况"
+        },
+        "peers": {
+          "title": "节点列表",
+          "description": "tailnet 里的所有节点"
+        }
+      }
     }
   }
 }

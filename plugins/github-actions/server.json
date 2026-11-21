@@ -3,7 +3,7 @@
   "name": "io.github.michael-ltm/github-actions",
   "title": "GitHub Actions",
   "description": "在面板里看 GitHub Actions：最近的运行、失败任务出错位置的日志、Release 列表，也能重跑失败的任务。需要一个 GitHub 令牌。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/michael-ltm/opspanel-plugins",
     "source": "github",
@@ -13,7 +13,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-linux-amd64",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.1/github-actions-linux-amd64",
       "transport": {
         "type": "stdio"
       },
@@ -29,36 +29,36 @@
           "description": "要看的仓库（owner/name），多个用逗号分隔。不填就看你最近推送过的 5 个仓库。"
         }
       ],
-      "version": "0.1.0",
-      "fileSha256": "8b1c3d47b534c3257c5ea5344af6d7fb88403ee3773282c00c7fc9c326bef06d"
+      "version": "0.1.1",
+      "fileSha256": "3c7e21283ca886e2df8be7875365e0683f028257a0f85d26d0f94fef04e432ee"
     }
   ],
   "_meta": {
     "io.github.opspanel/plugin": {
       "artifacts": {
         "darwin/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-darwin-amd64",
-          "sha256": "5ffac7445b53d48f1d4450d84e27d6420ccb0c116cfa484e40603cbdd77c1af6"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.1/github-actions-darwin-amd64",
+          "sha256": "86db7d78c04accacbb2fe35b990dfc25071fd9323ed3d3271cbb2779294ce661"
         },
         "darwin/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-darwin-arm64",
-          "sha256": "660581774fe6e6832e7ed7da9f2886046f160b435e974609c0669472cb96edd3"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.1/github-actions-darwin-arm64",
+          "sha256": "c6c3e7f4c1dc0f0abf71f5d02e6042440320a76ac54110e43bedb7c98e50852c"
         },
         "linux/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-linux-amd64",
-          "sha256": "8b1c3d47b534c3257c5ea5344af6d7fb88403ee3773282c00c7fc9c326bef06d"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.1/github-actions-linux-amd64",
+          "sha256": "3c7e21283ca886e2df8be7875365e0683f028257a0f85d26d0f94fef04e432ee"
         },
         "linux/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-linux-arm64",
-          "sha256": "0ed033eef220253f56b621f83bd5d823b5ebaa46e1be257fff478f07187789e1"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.1/github-actions-linux-arm64",
+          "sha256": "ab5f2724e1097b0c29c2a2cc2a6cf77870e08f20cbb1225f448f7097879075ca"
         },
         "windows/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-windows-amd64.exe",
-          "sha256": "29190d4803c3e072123f961848cfc7b2ed15b374096b8ed2a6357ae6286bb719"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.1/github-actions-windows-amd64.exe",
+          "sha256": "ef12fa8eb76d99e7a706a0754cf32eeefe2da68bfdf3fda73e66be7494db75ad"
         },
         "windows/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.0/github-actions-windows-arm64.exe",
-          "sha256": "7f253b5913c13405aa443cb2c6ba3ff35645df831dae62ed411cc31a896b94f2"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/github-actions-v0.1.1/github-actions-windows-arm64.exe",
+          "sha256": "80f3eb9b19278871b39a123d791de18b02d582b2804e210b296c3f6a9e69c5e9"
         }
       },
       "i18n": {
@@ -69,7 +69,18 @@
           "colWorkflow": "Workflow",
           "colBranch": "Branch",
           "colState": "State",
-          "colStarted": "Started"
+          "colStarted": "Started",
+          "actFailLog": "Failure log",
+          "actRerun": "Re-run failed",
+          "actOpen": "Open",
+          "tool.runs_list.title": "Recent runs",
+          "tool.runs_list.description": "The latest workflow runs",
+          "tool.run_logs.title": "Failure log",
+          "tool.run_logs.description": "Log lines around where a failed job broke",
+          "tool.run_rerun.title": "Re-run failed jobs",
+          "tool.run_rerun.description": "Run the failed jobs of a run again",
+          "tool.releases_list.title": "Releases",
+          "tool.releases_list.description": "The repository's latest releases"
         }
       },
       "ui": [
@@ -100,7 +111,8 @@
             {
               "key": "state",
               "title": "状态",
-              "titleKey": "colState"
+              "titleKey": "colState",
+              "format": "badge"
             },
             {
               "key": "createdAt",
@@ -108,9 +120,85 @@
               "titleKey": "colStarted",
               "format": "time"
             }
+          ],
+          "rowActions": [
+            {
+              "id": "logs",
+              "title": "失败日志",
+              "titleKey": "actFailLog",
+              "icon": "logs",
+              "tool": "run_logs",
+              "arguments": {
+                "repo": "{repo}",
+                "run_id": "{id}"
+              },
+              "display": "dialog",
+              "resultPath": "/failedJobs",
+              "when": {
+                "key": "state",
+                "in": [
+                  "failure",
+                  "cancelled",
+                  "timed_out",
+                  "startup_failure"
+                ]
+              }
+            },
+            {
+              "id": "rerun",
+              "title": "重跑失败项",
+              "titleKey": "actRerun",
+              "icon": "refresh",
+              "tool": "run_rerun",
+              "arguments": {
+                "repo": "{repo}",
+                "run_id": "{id}"
+              },
+              "confirm": true,
+              "when": {
+                "key": "state",
+                "in": [
+                  "failure",
+                  "cancelled",
+                  "timed_out",
+                  "startup_failure"
+                ]
+              }
+            },
+            {
+              "id": "open",
+              "title": "打开",
+              "titleKey": "actOpen",
+              "icon": "external",
+              "link": "{url}",
+              "unless": {
+                "key": "url",
+                "in": [
+                  ""
+                ]
+              }
+            }
           ]
         }
-      ]
+      ],
+      "tools": {
+        "runs_list": {
+          "title": "最近的运行",
+          "description": "各仓库最近的工作流运行"
+        },
+        "run_logs": {
+          "title": "失败日志",
+          "description": "只取失败步骤附近的日志"
+        },
+        "run_rerun": {
+          "title": "重跑失败的任务",
+          "description": "重新运行一次运行里失败的任务"
+        },
+        "releases_list": {
+          "title": "发布列表",
+          "description": "仓库最近的 Release"
+        }
+      }
     }
   }
 }

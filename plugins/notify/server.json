@@ -3,7 +3,7 @@
   "name": "io.github.michael-ltm/notify",
   "title": "通知渠道",
   "description": "把消息推送到 ntfy、Telegram 或飞书机器人，让 Agent 和面板例程能通知到你。至少配置一个渠道。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/michael-ltm/opspanel-plugins",
     "source": "github",
@@ -13,7 +13,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-linux-amd64",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-linux-amd64",
       "transport": {
         "type": "stdio"
       },
@@ -52,36 +52,36 @@
           "isSecret": true
         }
       ],
-      "version": "0.1.0",
-      "fileSha256": "04574bf5c964162777b568ba31dc09abacbf8c975d0d62e79cc211b5975c0758"
+      "version": "0.1.1",
+      "fileSha256": "3e64e14c699db3c329f57e2a6509977fbd4c35852026fe0da9bd3469001309bd"
     }
   ],
   "_meta": {
     "io.github.opspanel/plugin": {
       "artifacts": {
         "darwin/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-darwin-amd64",
-          "sha256": "b509871d9f0fd02e0702644e22578b8f17ae523c630350b046c40072113b30fb"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-darwin-amd64",
+          "sha256": "16c1430d88dc96108203f64d59aa114c9d08c485872cb4da16aa33921e900e66"
         },
         "darwin/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-darwin-arm64",
-          "sha256": "034beced9caa6f81aeaf25e2166e3c1f7aa2e1d73feb7647e7f90106d2acddb1"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-darwin-arm64",
+          "sha256": "b43472b13cd8842be934de3c9cc58746ceb7da7b3a0c89d45b2ef2c44f18cbfd"
         },
         "linux/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-linux-amd64",
-          "sha256": "04574bf5c964162777b568ba31dc09abacbf8c975d0d62e79cc211b5975c0758"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-linux-amd64",
+          "sha256": "3e64e14c699db3c329f57e2a6509977fbd4c35852026fe0da9bd3469001309bd"
         },
         "linux/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-linux-arm64",
-          "sha256": "946c49c76f56d0533035741844a91ff978619e0ae41c0c6f00e6c2380ed977f4"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-linux-arm64",
+          "sha256": "4122271d3b8518e863a0b474ab4b38ab9d457f45dc91c49bd52ca45511fd314e"
         },
         "windows/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-windows-amd64.exe",
-          "sha256": "bf6c059179707c003e6d65f9e1e03cfdf94b3414edd9d1488a47caa5f42d1955"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-windows-amd64.exe",
+          "sha256": "7b086b13f4886459f60d9a1a94d8227b93173fb54cfc0f834af8f634ca59b93a"
         },
         "windows/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.0/notify-windows-arm64.exe",
-          "sha256": "7177be0594fab8976d738d9225058116fb7175757c9a6d5f9b51630ead19499e"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/notify-v0.1.1/notify-windows-arm64.exe",
+          "sha256": "21fe7e3f4a9251aacc6a1247b80cab5773a24c7feefeb25a5d0e705368f1cccb"
         }
       },
       "i18n": {
@@ -92,7 +92,12 @@
           "colChannel": "Channel",
           "colConfigured": "Configured",
           "colTarget": "Sends to",
-          "colMissing": "Still needed"
+          "colMissing": "Still needed",
+          "actTest": "Send test",
+          "tool.channels.title": "Channels",
+          "tool.channels.description": "Which notification channels are set up",
+          "tool.send.title": "Send message",
+          "tool.send.description": "Push a message to your channels"
         }
       },
       "ui": [
@@ -112,7 +117,8 @@
             {
               "key": "configured",
               "title": "已配置",
-              "titleKey": "colConfigured"
+              "titleKey": "colConfigured",
+              "format": "bool"
             },
             {
               "key": "target",
@@ -124,9 +130,39 @@
               "title": "还需设置",
               "titleKey": "colMissing"
             }
+          ],
+          "rowActions": [
+            {
+              "id": "test",
+              "title": "发送测试",
+              "titleKey": "actTest",
+              "icon": "send",
+              "tool": "send",
+              "arguments": {
+                "channel": "{id}",
+                "title": "OpsPanel",
+                "body": "Test message from OpsPanel"
+              },
+              "when": {
+                "key": "configured",
+                "in": [
+                  "true"
+                ]
+              }
+            }
           ]
         }
-      ]
+      ],
+      "tools": {
+        "channels": {
+          "title": "查看渠道",
+          "description": "列出已配置和未配置的通知渠道"
+        },
+        "send": {
+          "title": "发送消息",
+          "description": "推送一条消息到通知渠道"
+        }
+      }
     }
   }
 }

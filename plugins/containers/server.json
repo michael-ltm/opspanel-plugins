@@ -3,7 +3,7 @@
   "name": "io.github.michael-ltm/containers",
   "title": "容器",
   "description": "查看和管理本机的 Docker / Podman 容器：列表、日志、启动、停止、重启和删除。自动找到已安装的引擎，不需要配置。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/michael-ltm/opspanel-plugins",
     "source": "github",
@@ -14,28 +14,28 @@
     "io.github.opspanel/plugin": {
       "artifacts": {
         "darwin/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-darwin-amd64",
-          "sha256": "d7f0939453679f04932b53979a57995e8add5078a6784c41f1524abb1545e851"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.1/containers-darwin-amd64",
+          "sha256": "6c5bafe2358ccf7329a43caed7dbc0b497d91b8df0ecfa235710f72a7224ea35"
         },
         "darwin/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-darwin-arm64",
-          "sha256": "3e67a58b2a62952706b53deb35b2a56b1a7678cfc9b87ef302ea2ed52a64d163"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.1/containers-darwin-arm64",
+          "sha256": "5ca645ea8d8abd6b5c59eb3fe21cc51f326f018b551cd8aad37c5084284934c6"
         },
         "linux/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-linux-amd64",
-          "sha256": "b0d4ded04175b91a42380a78e46bbdaf87521325b2d65e3b56158ca99a1eb40e"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.1/containers-linux-amd64",
+          "sha256": "685953a84e23386305a1a6b4356c036ff83f8c8900cd84ce40a26cede4af5e78"
         },
         "linux/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-linux-arm64",
-          "sha256": "3e53458f03000229614371963ca31e2abe5f26af4358bf2a510df33132e41d62"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.1/containers-linux-arm64",
+          "sha256": "867010a3d35217918dd276082b3f9bec5e009c03a06bd2212916545d183d50ec"
         },
         "windows/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-windows-amd64.exe",
-          "sha256": "442fc2b874dfedad88efc21c874d7440ef8284696d47abb6621fe7c05ddb54f4"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.1/containers-windows-amd64.exe",
+          "sha256": "80e432fef1099c09a5635bdab02508164cd9ce7ec7952c0c564a111aefe36c51"
         },
         "windows/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.0/containers-windows-arm64.exe",
-          "sha256": "6805f78908e2b884c50cca6d09c91eb2524c5e068850924233b5e9874373355a"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/containers-v0.1.1/containers-windows-arm64.exe",
+          "sha256": "4bb755a4107d5198b4601f3c5878f90447efa687c9a431feb2a562742d4a8da4"
         }
       },
       "i18n": {
@@ -48,7 +48,24 @@
           "colImage": "Image",
           "colState": "State",
           "colStatus": "Status",
-          "colPorts": "Ports"
+          "colPorts": "Ports",
+          "actLogs": "Logs",
+          "actStart": "Start",
+          "actStop": "Stop",
+          "actRestart": "Restart",
+          "actRemove": "Remove",
+          "tool.containers_list.title": "List containers",
+          "tool.containers_list.description": "Every container on this machine with its state, image and ports",
+          "tool.container_logs.title": "View logs",
+          "tool.container_logs.description": "The container's latest output",
+          "tool.container_start.title": "Start container",
+          "tool.container_start.description": "Start a stopped container",
+          "tool.container_stop.title": "Stop container",
+          "tool.container_stop.description": "Stop a running container; it can be started again",
+          "tool.container_restart.title": "Restart container",
+          "tool.container_restart.description": "Stop and start a container again",
+          "tool.container_remove.title": "Remove container",
+          "tool.container_remove.description": "Delete a container and its writable layer; named volumes are kept"
         }
       },
       "ui": [
@@ -83,7 +100,8 @@
             {
               "key": "state",
               "title": "状态",
-              "titleKey": "colState"
+              "titleKey": "colState",
+              "format": "badge"
             },
             {
               "key": "status",
@@ -95,9 +113,113 @@
               "title": "端口",
               "titleKey": "colPorts"
             }
+          ],
+          "rowActions": [
+            {
+              "id": "logs",
+              "title": "日志",
+              "titleKey": "actLogs",
+              "icon": "logs",
+              "tool": "container_logs",
+              "arguments": {
+                "id": "{id}",
+                "tail": 200
+              },
+              "display": "dialog",
+              "resultPath": "/logs"
+            },
+            {
+              "id": "start",
+              "title": "启动",
+              "titleKey": "actStart",
+              "icon": "play",
+              "tool": "container_start",
+              "arguments": {
+                "id": "{id}"
+              },
+              "unless": {
+                "key": "state",
+                "in": [
+                  "running",
+                  "restarting"
+                ]
+              }
+            },
+            {
+              "id": "stop",
+              "title": "停止",
+              "titleKey": "actStop",
+              "icon": "stop",
+              "tool": "container_stop",
+              "arguments": {
+                "id": "{id}"
+              },
+              "confirm": true,
+              "when": {
+                "key": "state",
+                "in": [
+                  "running",
+                  "restarting"
+                ]
+              }
+            },
+            {
+              "id": "restart",
+              "title": "重启",
+              "titleKey": "actRestart",
+              "icon": "refresh",
+              "tool": "container_restart",
+              "arguments": {
+                "id": "{id}"
+              },
+              "confirm": true,
+              "when": {
+                "key": "state",
+                "in": [
+                  "running",
+                  "restarting"
+                ]
+              }
+            },
+            {
+              "id": "remove",
+              "title": "删除",
+              "titleKey": "actRemove",
+              "icon": "trash",
+              "tool": "container_remove",
+              "arguments": {
+                "id": "{id}"
+              }
+            }
           ]
         }
-      ]
+      ],
+      "tools": {
+        "containers_list": {
+          "title": "列出容器",
+          "description": "查看本机所有容器的状态、镜像和端口"
+        },
+        "container_logs": {
+          "title": "查看日志",
+          "description": "读取容器最近的输出"
+        },
+        "container_start": {
+          "title": "启动容器",
+          "description": "启动一个已停止的容器"
+        },
+        "container_stop": {
+          "title": "停止容器",
+          "description": "停止一个运行中的容器，之后还能再启动"
+        },
+        "container_restart": {
+          "title": "重启容器",
+          "description": "先停止再启动容器"
+        },
+        "container_remove": {
+          "title": "删除容器",
+          "description": "删除容器及其可写层，命名卷会保留"
+        }
+      }
     }
   }
 }

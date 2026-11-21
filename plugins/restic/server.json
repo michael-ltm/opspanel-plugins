@@ -3,7 +3,7 @@
   "name": "io.github.michael-ltm/restic",
   "title": "restic 备份",
   "description": "查看和管理 restic 备份：快照列表、仓库大小和完整性检查，也能备份指定路径、把快照恢复到指定目录。需要本机已安装 restic。",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/michael-ltm/opspanel-plugins",
     "source": "github",
@@ -13,7 +13,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-linux-amd64",
+      "identifier": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.1/restic-linux-amd64",
       "transport": {
         "type": "stdio"
       },
@@ -48,36 +48,36 @@
           "isSecret": true
         }
       ],
-      "version": "0.1.0",
-      "fileSha256": "c80224a4907bf952ee221eb5c09076979af953626f8227cd13420ec2cd6e37d4"
+      "version": "0.1.1",
+      "fileSha256": "2d8017baa216476ec1379aa16a32b2a138d93632c464fdebdafc012775c60aed"
     }
   ],
   "_meta": {
     "io.github.opspanel/plugin": {
       "artifacts": {
         "darwin/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-darwin-amd64",
-          "sha256": "539b8994d27ec066215e2818129e2d96a6b1be29b4719e98a8546c4da3e2b029"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.1/restic-darwin-amd64",
+          "sha256": "3a1995a3963a7c2d5546c9fbba5b123203942bfffcc5d62179b06cc9e738fc59"
         },
         "darwin/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-darwin-arm64",
-          "sha256": "b29e22efb7c6174d51b9ff3016196b98b83ccf8cb01f0928e39e263067d06503"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.1/restic-darwin-arm64",
+          "sha256": "4a77eadfbf7b9e204a32b131f5e16401d66c69c83d47c24cf649fec4de5aa259"
         },
         "linux/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-linux-amd64",
-          "sha256": "c80224a4907bf952ee221eb5c09076979af953626f8227cd13420ec2cd6e37d4"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.1/restic-linux-amd64",
+          "sha256": "2d8017baa216476ec1379aa16a32b2a138d93632c464fdebdafc012775c60aed"
         },
         "linux/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-linux-arm64",
-          "sha256": "25f7a764dbc3b6fd096be76ab6dc5755e18fa85c46a19ad7bf9e3acd22729a75"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.1/restic-linux-arm64",
+          "sha256": "dc76fc7f6f81842a0757d0573a7468d149984efae3d8cfe229c9904fc51ab36e"
         },
         "windows/amd64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-windows-amd64.exe",
-          "sha256": "c019c992ff7325ec6c213c61e96bb6211713157ce95be431b2e7cab517984447"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.1/restic-windows-amd64.exe",
+          "sha256": "a6cb2bdef44f9dd6be4e4b5247a62094288d59726f7114fa2a15149fc7cc2951"
         },
         "windows/arm64": {
-          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.0/restic-windows-arm64.exe",
-          "sha256": "1d5b3cfdd215140769732cd4b27b2935a583846f6fe4623865b8d402c563de56"
+          "url": "https://github.com/michael-ltm/opspanel-plugins/releases/download/restic-v0.1.1/restic-windows-arm64.exe",
+          "sha256": "f59fa489b79b68ab2ddb6f850c9e8c5daa45c70ee71d87a247d3ce5f595b05c4"
         }
       },
       "i18n": {
@@ -89,7 +89,20 @@
           "colHost": "Host",
           "colPaths": "Paths",
           "colTags": "Tags",
-          "colID": "ID"
+          "colID": "ID",
+          "actCheck": "Check repository",
+          "actStats": "Repository size",
+          "actCopyId": "Copy ID",
+          "tool.snapshots.title": "Snapshots",
+          "tool.snapshots.description": "The backup snapshots in the repository",
+          "tool.stats.title": "Repository size",
+          "tool.stats.description": "Snapshot count and the space they take",
+          "tool.check.title": "Check repository",
+          "tool.check.description": "Verify the repository's integrity",
+          "tool.backup.title": "Back up now",
+          "tool.backup.description": "Back up paths into a new snapshot",
+          "tool.restore.title": "Restore snapshot",
+          "tool.restore.description": "Restore a snapshot into a directory; may overwrite files"
         }
       },
       "ui": [
@@ -131,9 +144,58 @@
               "title": "ID",
               "titleKey": "colID"
             }
+          ],
+          "actions": [
+            {
+              "id": "check",
+              "title": "检查仓库",
+              "titleKey": "actCheck",
+              "icon": "check",
+              "tool": "check",
+              "display": "dialog"
+            },
+            {
+              "id": "stats",
+              "title": "占用空间",
+              "titleKey": "actStats",
+              "icon": "logs",
+              "tool": "stats",
+              "display": "dialog"
+            }
+          ],
+          "rowActions": [
+            {
+              "id": "copy",
+              "title": "复制 ID",
+              "titleKey": "actCopyId",
+              "icon": "copy",
+              "copy": "{id}"
+            }
           ]
         }
-      ]
+      ],
+      "tools": {
+        "snapshots": {
+          "title": "快照列表",
+          "description": "仓库里的备份快照"
+        },
+        "stats": {
+          "title": "仓库占用",
+          "description": "快照数量和占用的空间"
+        },
+        "check": {
+          "title": "检查仓库",
+          "description": "校验仓库结构是否完整"
+        },
+        "backup": {
+          "title": "立即备份",
+          "description": "把指定路径备份成一个新快照"
+        },
+        "restore": {
+          "title": "恢复快照",
+          "description": "把快照恢复到一个目录，可能覆盖文件"
+        }
+      }
     }
   }
 }
